@@ -1,42 +1,81 @@
-#root {
-  max-width: 1280px;
+.site-shell {
+  width: min(1000px, 92vw);
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 1.5rem 0 3rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.site-brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.site-nav a {
+  padding: 0.3rem 0.1rem;
+  border-bottom: 2px solid transparent;
+}
+
+.site-nav a.active {
+  border-bottom-color: currentColor;
+}
+
+.site-main {
+  margin-top: 2rem;
+}
+
+.page-section h1 {
+  margin-bottom: 0.75rem;
+}
+
+.lead {
+  font-size: 1.08rem;
+  opacity: 0.9;
+}
+
+.projects-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.project-card {
+  border: 1px solid #2f2f2f;
+  border-radius: 12px;
+  padding: 1rem;
+  background: #191919;
+}
+
+.project-card h2 {
+  font-size: 1.2rem;
+  margin-top: 0;
+}
+
+.project-stack {
+  color: #a9a9a9;
+  font-size: 0.92rem;
+}
+
+@media (prefers-color-scheme: light) {
+  .project-card {
+    border-color: #d6d6d6;
+    background: #ffffff;
   }
-  to {
-    transform: rotate(360deg);
+
+  .project-stack {
+    color: #4b5563;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
