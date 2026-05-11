@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# JAR/ZIP binaries must never get CRLF conversion (that corrupts archives)
+*.jar binary
