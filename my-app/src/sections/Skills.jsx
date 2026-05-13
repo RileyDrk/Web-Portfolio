@@ -11,7 +11,7 @@ const icons = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="px-6 py-24 md:py-28 border-t border-theme">
+    <section id="skills" className="px-6 py-24 md:py-28 border-t-2 border-[var(--border-section)]">
       <div className="max-w-6xl mx-auto">
         <Reveal className="max-w-2xl mb-14">
           <p className="section-label mb-3">Skills</p>
@@ -29,9 +29,9 @@ export default function Skills() {
             const Icon = icons[icon] ?? Sparkles
             return (
               <Reveal key={title} delayMs={index * 70}>
-                <div className="skill-panel rounded-[var(--radius-xl)] border border-theme bg-[color-mix(in_oklch,var(--surface)_92%,transparent)] dark:bg-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] backdrop-blur-sm p-8 h-full">
+                <div className="skill-panel rounded-[var(--radius-xl)] border-2 border-theme bg-[color-mix(in_oklch,var(--surface)_92%,transparent)] dark:bg-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] p-8 h-full">
                   <div className="flex items-center gap-3 mb-5">
-                    <span className="skill-icon-ring flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--accent-soft)] text-[var(--accent)] shadow-inner ring-1 ring-[var(--accent-soft)]">
+                    <span className="skill-icon-ring flex h-12 w-12 items-center justify-center rounded-none border-2 border-[color-mix(in_oklch,var(--accent)_35%,var(--border))] bg-[var(--accent-soft)] text-[var(--accent)] shadow-[var(--retro-shadow-sm)]">
                       <Icon size={22} strokeWidth={1.72} />
                     </span>
                     <h3 className="text-lg font-bold text-theme">{title}</h3>
@@ -41,7 +41,7 @@ export default function Skills() {
                     {items.map((item) => (
                       <li
                         key={item}
-                        className="flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[var(--accent)] before:opacity-75 before:shrink-0 before:shadow-[0_0_12px_-2px_var(--glow)]"
+                        className="flex items-center gap-2 before:content-[''] before:w-2 before:h-2 before:rounded-none before:bg-[var(--accent)] before:opacity-90 before:shrink-0 before:border before:border-theme"
                       >
                         {item}
                       </li>

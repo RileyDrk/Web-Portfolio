@@ -38,11 +38,11 @@ export default function ProjectPage({ project }) {
           </button>
 
           <div className="flex flex-wrap items-start gap-4 mb-6">
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--accent-soft)] border border-[color-mix(in_oklch,var(--accent)_22%,transparent)] text-[var(--accent)] shadow-inner">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-none bg-[var(--accent-soft)] border-2 border-[color-mix(in_oklch,var(--accent)_35%,var(--border))] text-[var(--accent)] shadow-[var(--shadow-card)]">
               <Icon size={28} strokeWidth={1.65} aria-hidden />
             </span>
             {project.highlight && (
-              <span className="text-[0.65rem] font-bold uppercase tracking-[0.22em] px-3 py-1 rounded-full border border-theme bg-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] text-muted">
+              <span className="text-[0.65rem] font-bold uppercase tracking-[0.22em] px-2 py-1 rounded-none border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] text-muted">
                 {project.highlight}
               </span>
             )}
@@ -57,7 +57,7 @@ export default function ProjectPage({ project }) {
             {project.tech.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 text-xs font-medium rounded-lg bg-[color-mix(in_oklch,var(--surface-muted)_90%,transparent)] border border-theme text-theme"
+                className="px-3 py-1 text-xs font-semibold rounded-none border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_90%,transparent)] text-theme"
               >
                 {tech}
               </span>
@@ -89,7 +89,7 @@ export default function ProjectPage({ project }) {
                 onVisibleChange={setVisibleCount}
               />
               {visibleCount === 0 ? (
-                <p className="text-muted text-sm leading-relaxed rounded-[var(--radius-lg)] border border-dashed border-theme px-5 py-4 bg-[color-mix(in_oklch,var(--surface-muted)_70%,transparent)]">
+                <p className="text-muted text-sm leading-relaxed rounded-[var(--radius-lg)] border-2 border-dashed border-theme px-5 py-4 bg-[color-mix(in_oklch,var(--surface-muted)_70%,transparent)]">
                   Screenshots are listed in projects.js but the files are missing or the src path does not match the
                   filename. Check public/projects/{project.slug}/ and src/assets/projects/{project.slug}/, then restart
                   npm run dev.

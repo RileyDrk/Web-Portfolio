@@ -29,18 +29,18 @@ export default function Projects() {
             const Icon = icons[project.icon] ?? LayoutGrid
             return (
               <Reveal key={project.slug} delayMs={index * 80}>
-                <article className="project-card-hover group relative flex flex-col rounded-[var(--radius-xl)] border border-theme bg-[color-mix(in_oklch,var(--surface)_78%,transparent)] dark:bg-[color-mix(in_oklch,var(--surface-muted)_92%,transparent)] backdrop-blur-md p-8 md:p-9 overflow-hidden h-full ring-1 ring-transparent hover:ring-2 hover:ring-[var(--accent-soft)]">
+                <article className="project-card-hover group relative flex flex-col rounded-[var(--radius-xl)] border-2 border-theme bg-[color-mix(in_oklch,var(--surface)_78%,transparent)] dark:bg-[color-mix(in_oklch,var(--surface-muted)_92%,transparent)] p-8 md:p-9 overflow-hidden h-full">
                   <div
-                    className="absolute top-0 right-0 w-44 h-44 rounded-full blur-3xl opacity-38 translate-x-[18%] -translate-y-1/4 bg-[var(--accent-soft)] pointer-events-none transition-opacity duration-500 group-hover:opacity-60"
+                    className="absolute top-0 right-0 w-32 h-32 opacity-30 translate-x-[20%] -translate-y-1/4 bg-[var(--accent-soft)] pointer-events-none transition-opacity duration-300 group-hover:opacity-50"
                     aria-hidden
                   />
 
                   <div className="relative flex justify-between items-start gap-4 mb-6">
-                    <div className="project-card-icon flex h-[3.5rem] w-[3.5rem] shrink-0 items-center justify-center rounded-2xl bg-[var(--accent-soft)] border border-[color-mix(in_oklch,var(--accent)_22%,transparent)] text-[var(--accent)] shadow-inner">
+                    <div className="project-card-icon flex h-[3.5rem] w-[3.5rem] shrink-0 items-center justify-center rounded-none bg-[var(--accent-soft)] border-2 border-[color-mix(in_oklch,var(--accent)_35%,var(--border))] text-[var(--accent)] shadow-[var(--retro-shadow-sm)]">
                       <Icon size={28} strokeWidth={1.65} />
                     </div>
                     {project.highlight && (
-                      <span className="text-[0.65rem] font-bold uppercase tracking-[0.22em] px-3 py-1 rounded-full border border-theme bg-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] text-muted whitespace-nowrap">
+                      <span className="text-[0.65rem] font-bold uppercase tracking-[0.22em] px-2 py-1 rounded-none border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] text-muted whitespace-nowrap">
                         {project.highlight}
                       </span>
                     )}
@@ -58,7 +58,7 @@ export default function Projects() {
                     {project.tech.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 text-xs font-medium rounded-lg bg-[color-mix(in_oklch,var(--surface-muted)_90%,transparent)] border border-theme text-theme transition-[background-color,border-color,box-shadow] duration-300 group-hover:bg-[color-mix(in_oklch,var(--accent-soft)_55%,transparent)] group-hover:border-[color-mix(in_oklch,var(--accent)_32%,var(--border))]"
+                        className="px-3 py-1 text-xs font-semibold rounded-none border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_90%,transparent)] text-theme transition-[background-color,border-color,box-shadow] duration-200 group-hover:bg-[color-mix(in_oklch,var(--accent-soft)_55%,transparent)] group-hover:border-[color-mix(in_oklch,var(--accent)_45%,var(--border))]"
                       >
                         {tech}
                       </span>

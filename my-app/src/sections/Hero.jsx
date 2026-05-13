@@ -69,13 +69,13 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-3 mb-10 animate-fade-up animate-fade-up-delay-2">
-            <span className="chip chip-subtle px-4 py-1.5 rounded-full text-sm font-medium border border-theme bg-surface-muted/92 backdrop-blur-sm">
+            <span className="chip chip-subtle px-4 py-1.5 rounded-none text-sm font-semibold border-2 border-theme bg-surface-muted">
               Thoughtful UI
             </span>
-            <span className="chip chip-subtle px-4 py-1.5 rounded-full text-sm font-medium border border-theme bg-surface-muted/92 backdrop-blur-sm">
+            <span className="chip chip-subtle chip-tone px-4 py-1.5 rounded-none text-sm font-semibold">
               Full-stack instincts
             </span>
-            <span className="chip chip-accent px-4 py-1.5 rounded-full text-sm font-medium border border-transparent bg-[var(--accent-soft)] text-theme shadow-sm ring-1 ring-[var(--accent-soft)]">
+            <span className="chip chip-accent px-4 py-1.5 rounded-none text-sm font-semibold border-2 border-theme bg-[var(--accent-soft)] text-theme shadow-[var(--retro-shadow-sm)]">
               Team-ready
             </span>
           </div>
@@ -106,12 +106,12 @@ export default function Hero() {
         <Reveal className="flex justify-center md:justify-end" delayMs={140}>
           <div className="relative w-full max-w-[20rem] md:max-w-none flex justify-center md:justify-end">
             <div
-              className="hero-photo-halo absolute inset-0 m-auto max-w-[16rem] max-h-[16rem] w-[72vw] h-[72vw] md:w-80 md:h-80 rounded-full bg-[var(--accent-soft)] blur-3xl"
+              className="hero-photo-halo absolute inset-0 m-auto max-w-[16rem] max-h-[16rem] w-[72vw] h-[72vw] md:w-80 md:h-80 rounded-none"
               aria-hidden
             />
 
-            <div className="relative portrait-shell rounded-[var(--radius-xl)] border border-theme shadow-[var(--shadow-card)]">
-              <div className="hero-portrait-glow absolute -inset-[3px] rounded-[calc(var(--radius-xl)+3px)] opacity-90 dark:opacity-65 blur-[7px]" />
+            <div className="relative portrait-shell rounded-[var(--radius-xl)] border-2 border-theme shadow-[var(--shadow-card)]">
+              <div className="hero-portrait-glow absolute -inset-[3px] rounded-[var(--radius-xl)] opacity-90 dark:opacity-65" />
               <img
                 src={portraitSrc}
                 alt="Riley Drake"

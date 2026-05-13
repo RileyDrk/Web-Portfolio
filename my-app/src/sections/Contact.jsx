@@ -35,9 +35,9 @@ export default function Contact() {
     <section id="contact" className="px-6 py-24 md:py-32">
       <div className="max-w-6xl mx-auto">
         <Reveal delayMs={40}>
-          <div className="contact-panel relative rounded-[calc(var(--radius-xl)+10px)] border border-theme overflow-hidden bg-gradient-to-br from-[color-mix(in_oklch,var(--accent-soft)_95%,transparent)] via-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] to-transparent dark:from-[color-mix(in_oklch,var(--accent)_12%,transparent)] dark:via-[color-mix(in_oklch,var(--surface)_88%,transparent)] p-11 md:p-16 text-center shadow-[var(--shadow-card)] ring-1 ring-[var(--accent-soft)]">
+          <div className="contact-panel contact-panel-surface relative rounded-[var(--radius-xl)] border-2 border-theme overflow-hidden p-11 md:p-16 text-center">
             <div
-              className="absolute -top-[5.75rem] left-1/2 -translate-x-1/2 w-[min(88vw,28rem)] h-52 rounded-full blur-3xl bg-[var(--accent-soft)] opacity-90 pointer-events-none"
+              className="contact-panel-deco absolute -top-24 left-1/2 -translate-x-1/2 w-[min(92vw,26rem)] h-40 pointer-events-none"
               aria-hidden
             />
 
