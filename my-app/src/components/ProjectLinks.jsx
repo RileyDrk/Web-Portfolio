@@ -33,7 +33,7 @@ function JarDemoAnchor({ href, fileName, label }) {
   return (
     <a
       href={href}
-      className={`inline-flex items-center gap-2 text-sm font-semibold accent cursor-pointer transition-[transform,color,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:opacity-95 group/link motion-reduce:transition-none ${
+      className={`group/link inline-flex items-center gap-2 px-3 py-2 text-sm font-bold border-2 border-theme bg-surface-muted shadow-[var(--retro-shadow-sm)] text-[var(--accent)] hover:bg-[var(--accent-soft)] hover:-translate-x-px hover:-translate-y-px hover:shadow-[var(--retro-shadow)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none cursor-pointer transition-[transform,box-shadow,background-color] duration-150 ${
         busy ? "pointer-events-none opacity-70" : ""
       }`}
       onClick={(e) => void handleClick(e)}
@@ -75,7 +75,7 @@ export default function ProjectLinks({ github, demo, demoLabel, className = "" }
           href={gh}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-semibold accent transition-[transform,color,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:opacity-95 group/link motion-reduce:transition-none"
+          className="group/link inline-flex items-center gap-2 px-3 py-2 text-sm font-bold border-2 border-theme bg-surface-muted shadow-[var(--retro-shadow-sm)] text-[var(--accent)] hover:bg-[var(--accent-soft)] hover:-translate-x-px hover:-translate-y-px hover:shadow-[var(--retro-shadow)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none motion-reduce:transition-none"
         >
           <Github
             size={16}
@@ -93,7 +93,7 @@ export default function ProjectLinks({ github, demo, demoLabel, className = "" }
             href={dm}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold accent transition-[transform,color,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:opacity-95 group/link motion-reduce:transition-none"
+            className="group/link inline-flex items-center gap-2 px-3 py-2 text-sm font-bold border-2 border-theme bg-surface-muted shadow-[var(--retro-shadow-sm)] text-[var(--accent)] hover:bg-[var(--accent-soft)] hover:-translate-x-px hover:-translate-y-px hover:shadow-[var(--retro-shadow)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none motion-reduce:transition-none"
           >
             <ExternalLink
               size={16}
