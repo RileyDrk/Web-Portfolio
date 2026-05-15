@@ -58,25 +58,24 @@ export default function Hero() {
         <div>
           <p className="section-label mb-4 animate-fade-up">Portfolio</p>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-theme tracking-tight leading-[1.05] animate-fade-up animate-fade-up-delay-1">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-theme tracking-normal leading-[1.05] animate-fade-up animate-fade-up-delay-1">
             Riley <span className="gradient-heading">Drake</span>
           </h1>
 
           <p className="text-muted text-lg md:text-xl max-w-xl mb-10 leading-relaxed animate-fade-up animate-fade-up-delay-2">
-            I&apos;m a developer who cares about clear interfaces and dependable logic—whether
-            that&apos;s a polished web front end, a heavier desktop build, or something new I
-            haven&apos;t listed yet.
+            I&apos;m a developer interested in game development, robotics, computer vision, and
+            dependable software. I like building systems that feel clear, playful, and useful.
           </p>
 
           <div className="flex flex-wrap gap-3 mb-10 animate-fade-up animate-fade-up-delay-2">
-            <span className="chip chip-subtle px-4 py-1.5 rounded-none text-sm font-semibold border-2 border-theme bg-surface-muted">
-              Thoughtful UI
+            <span className="chip chip-subtle px-4 py-1.5 rounded-[var(--radius-lg)] text-sm font-semibold border-2 border-theme bg-surface-muted">
+              Game systems
             </span>
-            <span className="chip chip-subtle chip-tone px-4 py-1.5 rounded-none text-sm font-semibold">
-              Full-stack instincts
+            <span className="chip chip-subtle chip-tone px-4 py-1.5 rounded-[var(--radius-lg)] text-sm font-semibold">
+              Robotics focus
             </span>
-            <span className="chip chip-accent px-4 py-1.5 rounded-none text-sm font-semibold border-2 border-theme bg-[var(--accent-soft)] text-theme shadow-[var(--retro-shadow-sm)]">
-              Team-ready
+            <span className="chip chip-accent px-4 py-1.5 rounded-[var(--radius-lg)] text-sm font-semibold border-2 border-theme bg-[var(--accent-soft)] text-theme shadow-[var(--retro-shadow-sm)]">
+              Computer vision
             </span>
           </div>
 
@@ -90,7 +89,7 @@ export default function Hero() {
                 className="inline-block transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none group-hover:translate-x-1"
                 aria-hidden
               >
-                →
+                &rarr;
               </span>
             </a>
 
@@ -106,7 +105,7 @@ export default function Hero() {
         <Reveal className="flex justify-center md:justify-end" delayMs={140}>
           <div className="relative w-full max-w-[20rem] md:max-w-none flex justify-center md:justify-end">
             <div
-              className="hero-photo-halo absolute inset-0 m-auto max-w-[16rem] max-h-[16rem] w-[72vw] h-[72vw] md:w-80 md:h-80 rounded-none"
+              className="hero-photo-halo absolute inset-0 m-auto max-w-[16rem] max-h-[16rem] w-[72vw] h-[72vw] md:w-80 md:h-80 rounded-[var(--radius-xl)]"
               aria-hidden
             />
 

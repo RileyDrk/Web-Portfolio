@@ -43,7 +43,7 @@ export default function Contact() {
 
             <div className="relative max-w-xl mx-auto">
               <p className="section-label mb-4">Contact</p>
-              <h2 className="text-3xl md:text-5xl font-bold text-theme mb-5 tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-bold text-theme mb-5 tracking-normal">
                 Available for thoughtful opportunities
               </h2>
               <p className="text-muted text-lg mb-8 leading-relaxed">
@@ -78,11 +78,11 @@ export default function Contact() {
               </div>
 
               <p className="text-muted text-[0.8125rem] mt-10 leading-snug px-2">
-                <span className="font-mono tracking-tight text-muted/95 text-[0.78rem] sm:text-[0.8125rem] break-all">
+                <span className="font-mono tracking-normal text-muted/95 text-[0.78rem] sm:text-[0.8125rem] break-all">
                   rileydrk123@gmail.com
                 </span>
                 <span className="mx-2 text-muted">·</span>
-                <span className="font-mono tracking-tight text-muted/95 text-[0.78rem] sm:text-[0.8125rem] break-all">
+                <span className="font-mono tracking-normal text-muted/95 text-[0.78rem] sm:text-[0.8125rem] break-all">
                   radrake@mun.ca
                 </span>
                 <span className="block mt-2 text-muted/90 normal-case tracking-normal font-sans text-[0.8rem]">

@@ -38,17 +38,17 @@ export default function ProjectPage({ project }) {
           </button>
 
           <div className="flex flex-wrap items-start gap-4 mb-6">
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-none bg-[var(--accent-soft)] border-2 border-[color-mix(in_oklch,var(--accent)_35%,var(--border))] text-[var(--accent)] shadow-[var(--shadow-card)]">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-[var(--accent-soft)] border-2 border-[color-mix(in_oklch,var(--accent)_35%,var(--border))] text-[var(--accent)] shadow-[var(--shadow-card)]">
               <Icon size={28} strokeWidth={1.65} aria-hidden />
             </span>
             {project.highlight && (
-              <span className="text-[0.65rem] font-bold uppercase tracking-[0.22em] px-2 py-1 rounded-none border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] text-muted">
+              <span className="text-[0.65rem] font-bold uppercase tracking-[0.22em] px-2 py-1 rounded-[var(--radius-sm)] border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] text-muted">
                 {project.highlight}
               </span>
             )}
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-theme tracking-tight mb-2">
+          <h1 className="text-4xl md:text-5xl font-bold text-theme tracking-normal mb-2">
             {project.title}
           </h1>
           <p className="text-lg font-semibold text-[var(--accent)] mb-6">{project.subtitle}</p>
@@ -57,7 +57,7 @@ export default function ProjectPage({ project }) {
             {project.tech.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 text-xs font-semibold rounded-none border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_90%,transparent)] text-theme"
+                className="px-3 py-1 text-xs font-semibold rounded-[var(--radius-sm)] border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_90%,transparent)] text-theme"
               >
                 {tech}
               </span>

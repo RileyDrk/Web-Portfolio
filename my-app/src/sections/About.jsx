@@ -18,7 +18,7 @@ export default function About() {
       <div className="max-w-6xl mx-auto">
         <Reveal className="max-w-2xl mb-12 md:mb-14">
           <p className="section-label mb-3">About</p>
-          <h2 className="text-3xl md:text-5xl font-bold text-theme mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-theme mb-4 tracking-normal">
             A bit about me
           </h2>
           <p className="text-lg text-[var(--accent)] font-medium">{about.tagline}</p>
@@ -38,7 +38,7 @@ export default function About() {
                   {about.highlights.map((item) => (
                     <li
                       key={item}
-                      className="flex gap-3 before:content-[''] before:mt-2 before:w-2 before:h-2 before:rounded-none before:bg-[var(--accent)] before:opacity-90 before:shrink-0 before:border before:border-theme"
+                      className="flex gap-3 before:content-[''] before:mt-2 before:w-2 before:h-2 before:rounded-[var(--radius-sm)] before:bg-[var(--accent)] before:opacity-90 before:shrink-0 before:border before:border-theme"
                     >
                       {item}
                     </li>

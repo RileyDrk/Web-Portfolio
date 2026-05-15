@@ -78,7 +78,7 @@ export default function ProjectScreenshotGallery({ figures, onVisibleChange }) {
               <button
                 type="button"
                 onClick={() => goTo(-1)}
-                className="absolute left-3 top-1/2 -translate-y-1/2 inline-flex h-11 w-11 items-center justify-center rounded-none border-2 border-theme bg-[var(--surface)] text-theme shadow-[var(--shadow-card)] transition-[transform,opacity] duration-150 hover:opacity-95 active:translate-x-[2px] active:translate-y-[2px] cursor-pointer"
+                className="absolute left-3 top-1/2 -translate-y-1/2 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-lg)] border-2 border-theme bg-[var(--surface)] text-theme shadow-[var(--shadow-card)] transition-[transform,opacity] duration-150 hover:opacity-95 active:translate-x-[2px] active:translate-y-[2px] cursor-pointer"
                 aria-label="Previous screenshot"
               >
                 <ChevronLeft size={22} strokeWidth={2} aria-hidden />
@@ -86,7 +86,7 @@ export default function ProjectScreenshotGallery({ figures, onVisibleChange }) {
               <button
                 type="button"
                 onClick={() => goTo(1)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 inline-flex h-11 w-11 items-center justify-center rounded-none border-2 border-theme bg-[var(--surface)] text-theme shadow-[var(--shadow-card)] transition-[transform,opacity] duration-150 hover:opacity-95 active:translate-x-[2px] active:translate-y-[2px] cursor-pointer"
+                className="absolute right-3 top-1/2 -translate-y-1/2 inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-lg)] border-2 border-theme bg-[var(--surface)] text-theme shadow-[var(--shadow-card)] transition-[transform,opacity] duration-150 hover:opacity-95 active:translate-x-[2px] active:translate-y-[2px] cursor-pointer"
                 aria-label="Next screenshot"
               >
                 <ChevronRight size={22} strokeWidth={2} aria-hidden />
