@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
-import { Sun, Moon, Menu, X, Github, Linkedin } from "lucide-react"
+import { Sun, Moon, Menu, X, Github, Linkedin, Download } from "lucide-react"
+import { about } from "../data/about"
+import { resumeHref, resumeLinkProps } from "../lib/resume"
 import { profileLinks } from "../lib/urls"
 
 const links = [
@@ -83,6 +85,8 @@ function SocialIcons({ compact = false }) {
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const resumeLink = resumeHref()
+  const showResume = Boolean(resumeLink && about.resume?.label)
   const [darkMode, setDarkMode] = useState(
     typeof window !== "undefined" ? localStorage.getItem("theme") === "dark" : false,
   )
@@ -126,6 +130,15 @@ export default function Navbar() {
               ))}
             </div>
             <div className="flex items-center gap-3 ml-10 pl-10 border-l border-theme/60">
+              {showResume && (
+                <a
+                  {...resumeLinkProps(resumeLink)}
+                  className="btn-soft-outline inline-flex items-center gap-2 rounded-[var(--radius-lg)] border px-4 py-2 text-[0.86rem] font-semibold"
+                >
+                  <Download size={16} strokeWidth={1.85} aria-hidden />
+                  Resume
+                </a>
+              )}
               <SocialIcons compact={false} />
               <ThemeToggleInner darkMode={darkMode} compact={false} onToggle={() => setDarkMode(!darkMode)} />
             </div>
@@ -159,6 +172,15 @@ export default function Navbar() {
               </a>
             ))}
             <div className="flex items-center gap-6 px-3 pt-4 mt-3 border-t border-theme text-sm font-semibold">
+              {showResume && (
+                <a
+                  {...resumeLinkProps(resumeLink)}
+                  className="inline-flex items-center gap-2 accent"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <Download size={18} aria-hidden /> Resume
+                </a>
+              )}
               <a
                 href={profileLinks.github}
                 target="_blank"

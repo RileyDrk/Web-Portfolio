@@ -33,7 +33,7 @@ export const about = {
    * Set to null to hide the button until you have a PDF ready.
    */
   resume: {
-    href: null,
+    href: "resume.pdf",
     label: "Download resume",
   },
 }
