@@ -82,71 +82,72 @@
   --shadow-card: var(--retro-shadow);
 }
 
-/* Retro robotics palette: warm arcade casing, CRT teal, signal amber, and ink outlines. */
+/* Polished retro palette: warm paper, botanical green, coral signal, and deep ink. */
 :root {
   --radius-sm: 0.5rem;
   --radius-lg: 0.85rem;
   --radius-xl: 1.15rem;
-  --palette-cream: #fff7de;
-  --palette-panel: #f2e5bd;
-  --palette-ink: #202332;
-  --palette-teal: #00a7a5;
-  --palette-teal-deep: #047777;
-  --palette-amber: #f2a83b;
-  --palette-coral: #e85d55;
-  --palette-steel: #64748b;
-  --bg: #fbf1cf;
-  --surface: #fff9e8;
-  --surface-muted: #f1e3b9;
-  --text: #202332;
-  --text-muted: #4f5f69;
-  --border: #263241;
-  --accent: var(--palette-teal-deep);
+  --palette-paper: #fff8ec;
+  --palette-linen: #f0e3cc;
+  --palette-ink: #242331;
+  --palette-forest: #176b5c;
+  --palette-mint: #75c9b7;
+  --palette-coral: #d95f59;
+  --palette-gold: #d99a2b;
+  --palette-plum: #5d4b73;
+  --palette-steel: #607482;
+  --bg: #f7ecd8;
+  --surface: #fffaf0;
+  --surface-muted: #eadcc3;
+  --text: #191923;
+  --text-muted: #404a50;
+  --border: #2d3340;
+  --accent: var(--palette-forest);
   --accent-secondary: var(--palette-coral);
-  --accent-soft: color-mix(in srgb, var(--palette-teal) 18%, transparent);
-  --glow: color-mix(in srgb, var(--palette-teal) 24%, transparent);
-  --accent-foreground: #fff9e8;
-  --highlight: var(--palette-amber);
-  --highlight-soft: color-mix(in srgb, var(--palette-amber) 24%, transparent);
-  --highlight-muted: color-mix(in srgb, var(--palette-amber) 18%, var(--surface));
-  --tone-warm: color-mix(in srgb, var(--palette-amber) 18%, var(--bg));
-  --tone-cool: color-mix(in srgb, var(--palette-teal) 12%, var(--bg));
-  --tone-band: color-mix(in srgb, var(--palette-coral) 10%, var(--bg));
-  --border-muted: color-mix(in srgb, var(--border) 22%, transparent);
-  --border-section: color-mix(in srgb, var(--border) 45%, var(--surface-muted));
-  --circuit-1: color-mix(in srgb, var(--palette-teal) 16%, transparent);
-  --circuit-2: color-mix(in srgb, var(--palette-amber) 14%, transparent);
-  --circuit-3: color-mix(in srgb, var(--palette-coral) 10%, transparent);
-  --shadow-ink: #171b26;
+  --accent-soft: color-mix(in srgb, var(--palette-forest) 14%, transparent);
+  --glow: color-mix(in srgb, var(--palette-mint) 22%, transparent);
+  --accent-foreground: #fffaf0;
+  --highlight: var(--palette-gold);
+  --highlight-soft: color-mix(in srgb, var(--palette-gold) 22%, transparent);
+  --highlight-muted: color-mix(in srgb, var(--palette-gold) 15%, var(--surface));
+  --tone-warm: color-mix(in srgb, var(--palette-gold) 12%, var(--bg));
+  --tone-cool: color-mix(in srgb, var(--palette-mint) 16%, var(--bg));
+  --tone-band: color-mix(in srgb, var(--palette-coral) 8%, var(--bg));
+  --border-muted: color-mix(in srgb, var(--border) 18%, transparent);
+  --border-section: color-mix(in srgb, var(--border) 34%, var(--surface-muted));
+  --circuit-1: color-mix(in srgb, var(--palette-mint) 18%, transparent);
+  --circuit-2: color-mix(in srgb, var(--palette-gold) 12%, transparent);
+  --circuit-3: color-mix(in srgb, var(--palette-coral) 8%, transparent);
+  --shadow-ink: #191a25;
   --retro-shadow: 5px 5px 0 var(--shadow-ink);
   --retro-shadow-sm: 3px 3px 0 var(--shadow-ink);
   --shadow-card: var(--retro-shadow);
 }
 
 .dark {
-  --bg: #10131f;
-  --surface: #171b2a;
-  --surface-muted: #22283a;
-  --text: #fff4cf;
-  --text-muted: #b7c2be;
-  --border: #4ee0d3;
-  --accent: #5bf2dc;
-  --accent-secondary: #ff746b;
-  --accent-soft: color-mix(in srgb, var(--accent) 18%, transparent);
-  --glow: color-mix(in srgb, var(--accent) 30%, transparent);
-  --accent-foreground: #111827;
-  --highlight: #ffbf4d;
-  --highlight-soft: color-mix(in srgb, var(--highlight) 20%, transparent);
-  --highlight-muted: color-mix(in srgb, var(--highlight) 12%, var(--surface));
-  --tone-warm: color-mix(in srgb, var(--highlight) 10%, var(--bg));
-  --tone-cool: color-mix(in srgb, var(--accent) 13%, var(--bg));
-  --tone-band: color-mix(in srgb, var(--accent-secondary) 8%, var(--bg));
-  --border-muted: color-mix(in srgb, var(--border) 28%, transparent);
-  --border-section: color-mix(in srgb, var(--border) 35%, var(--surface-muted));
-  --circuit-1: color-mix(in srgb, var(--accent) 15%, transparent);
-  --circuit-2: color-mix(in srgb, var(--highlight) 12%, transparent);
-  --circuit-3: color-mix(in srgb, var(--accent-secondary) 10%, transparent);
-  --shadow-ink: #05070d;
+  --bg: #181522;
+  --surface: #241f31;
+  --surface-muted: #302a3b;
+  --text: #fff8ed;
+  --text-muted: #e0d8cb;
+  --border: #79d7c0;
+  --accent: #79d7c0;
+  --accent-secondary: #ff8a7a;
+  --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
+  --glow: color-mix(in srgb, var(--accent) 24%, transparent);
+  --accent-foreground: #15131d;
+  --highlight: #f1bd58;
+  --highlight-soft: color-mix(in srgb, var(--highlight) 18%, transparent);
+  --highlight-muted: color-mix(in srgb, var(--highlight) 10%, var(--surface));
+  --tone-warm: color-mix(in srgb, var(--highlight) 8%, var(--bg));
+  --tone-cool: color-mix(in srgb, var(--accent) 11%, var(--bg));
+  --tone-band: color-mix(in srgb, var(--accent-secondary) 7%, var(--bg));
+  --border-muted: color-mix(in srgb, var(--border) 24%, transparent);
+  --border-section: color-mix(in srgb, var(--border) 30%, var(--surface-muted));
+  --circuit-1: color-mix(in srgb, var(--accent) 12%, transparent);
+  --circuit-2: color-mix(in srgb, var(--highlight) 10%, transparent);
+  --circuit-3: color-mix(in srgb, var(--accent-secondary) 8%, transparent);
+  --shadow-ink: #07060c;
   --retro-shadow: 5px 5px 0 var(--shadow-ink);
   --retro-shadow-sm: 3px 3px 0 var(--shadow-ink);
   --shadow-card: var(--retro-shadow);
@@ -521,19 +522,15 @@ html:not(.dark) body {
   background: none;
   -webkit-background-clip: unset;
   background-clip: unset;
-  color: var(--accent);
+  color: inherit;
   animation: none;
-  padding: 0 0.06em;
+  padding: 0;
   box-decoration-break: clone;
-  box-shadow:
-    inset 0 -0.22em 0 color-mix(in oklch, var(--highlight) 55%, transparent),
-    inset 0 -0.42em 0 color-mix(in oklch, var(--accent) 42%, transparent);
+  box-shadow: none;
 }
 
 .dark .gradient-heading {
-  box-shadow:
-    inset 0 -0.22em 0 color-mix(in oklch, var(--highlight) 50%, transparent),
-    inset 0 -0.42em 0 color-mix(in oklch, var(--accent) 48%, transparent);
+  box-shadow: none;
 }
 
 .section-label {
@@ -541,12 +538,12 @@ html:not(.dark) body {
   font-weight: 650;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: color-mix(in oklch, color-mix(in oklch, var(--accent) 52%, var(--highlight) 48%) 72%, var(--text) 28%);
+  color: color-mix(in oklch, var(--accent) 72%, var(--text) 28%);
   opacity: 1;
 }
 
 .dark .section-label {
-  color: color-mix(in oklch, var(--accent) 58%, var(--highlight) 42%);
+  color: color-mix(in oklch, var(--accent) 78%, var(--text) 22%);
   opacity: 1;
 }
 

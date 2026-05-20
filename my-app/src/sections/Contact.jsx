@@ -1,21 +1,13 @@
 import { useCallback, useState } from "react"
+import { Download } from "lucide-react"
 import Reveal from "../components/Reveal"
-import {
-  contactMailtoHref,
-  gmailComposeHref,
-  CONTACT_COPY_LINE,
-  profileLinks,
-} from "../lib/urls"
+import { about } from "../data/about"
+import { resumeHref, resumeLinkProps } from "../lib/resume"
+import { CONTACT_COPY_LINE, profileLinks } from "../lib/urls"
 
 export default function Contact() {
-  const mailtoHref = contactMailtoHref({
-    to: "rileydrk123@gmail.com",
-    cc: "radrake@mun.ca",
-    subject: "Portfolio contact",
-  })
-  const gmailHref = gmailComposeHref({
-    subject: "Portfolio contact",
-  })
+  const resumeLink = resumeHref()
+  const showResume = Boolean(resumeLink && about.resume?.label)
 
   const [copyState, setCopyState] = useState("idle")
 
@@ -52,22 +44,15 @@ export default function Contact() {
               </p>
 
               <div className="flex flex-col items-stretch gap-4 max-w-sm mx-auto w-full">
-                <a
-                  href={mailtoHref}
-                  className="btn-primary-fill inline-flex justify-center rounded-[var(--radius-xl)] px-10 py-[1rem] cursor-pointer text-[1.025rem]"
-                  title="Opens your default mail program (To + CC prefilled)"
-                >
-                  Email me
-                </a>
-                <a
-                  href={gmailHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-soft-outline inline-flex justify-center items-center rounded-[var(--radius-xl)] border px-8 py-[0.85rem] text-[0.95rem] font-semibold"
-                  title="Compose in Gmail inside the browser if mailto does nothing"
-                >
-                  Compose in Gmail
-                </a>
+                {showResume && (
+                  <a
+                    {...resumeLinkProps(resumeLink)}
+                    className="btn-primary-fill inline-flex justify-center items-center gap-2 rounded-[var(--radius-xl)] px-10 py-[1rem] text-[1.025rem]"
+                  >
+                    <Download size={18} strokeWidth={1.85} aria-hidden />
+                    Resume
+                  </a>
+                )}
                 <button
                   type="button"
                   onClick={() => void handleCopyEmails()}
@@ -85,11 +70,8 @@ export default function Contact() {
                 <span className="font-mono tracking-normal text-muted/95 text-[0.78rem] sm:text-[0.8125rem] break-all">
                   radrake@mun.ca
                 </span>
-                <span className="block mt-2 text-muted/90 normal-case tracking-normal font-sans text-[0.8rem]">
-                  Gmail is prefilled as To · MUN on CC.
-                </span>
               </p>
-              <p className="sr-only">Email contact with mailto Gmail and copy options.</p>
+              <p className="sr-only">Email contact addresses and resume download.</p>
             </div>
           </div>
         </Reveal>

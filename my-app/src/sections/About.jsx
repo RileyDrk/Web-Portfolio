@@ -1,18 +1,7 @@
-import { Download } from "lucide-react"
 import Reveal from "../components/Reveal"
 import { about } from "../data/about"
-import { publicAssetUrl } from "../lib/urls"
-
-function resumeHref(href) {
-  if (!href) return null
-  if (/^https?:\/\//i.test(href)) return href
-  return publicAssetUrl(href.replace(/^\//, ""))
-}
 
 export default function About() {
-  const resumeLink = resumeHref(about.resume?.href)
-  const showResume = Boolean(resumeLink && about.resume?.label)
-
   return (
     <section id="about" className="px-6 py-24 md:py-28 border-t-2 border-[var(--border-section)]">
       <div className="max-w-6xl mx-auto">
@@ -46,16 +35,6 @@ export default function About() {
                 </ul>
               )}
 
-              {showResume && (
-                <a
-                  href={resumeLink}
-                  {...(/^https?:\/\//i.test(resumeLink) ? { target: "_blank", rel: "noopener noreferrer" } : { download: true })}
-                  className="btn-soft-outline mt-8 inline-flex items-center gap-2 rounded-[var(--radius-xl)] border px-6 py-3 font-semibold"
-                >
-                  <Download size={18} strokeWidth={1.85} aria-hidden />
-                  {about.resume.label}
-                </a>
-              )}
             </div>
           </Reveal>
 
