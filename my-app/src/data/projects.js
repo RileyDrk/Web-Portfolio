@@ -247,6 +247,31 @@ private int countNewCorners(MoveOption move, Piece test, int playerIdx) {
       },
     ],
   },
+  {
+    slug: "portfolio-website",
+    title: "Portfolio Website",
+    subtitle: "Responsive personal portfolio",
+    description:
+      "The website you are viewing: a responsive portfolio designed to showcase my work, skills, and development process through detailed project pages.",
+    overview:
+      "I built this portfolio as a central place for my work and as a project in its own right. The site is composed of reusable React components and data-driven content, making it straightforward to add projects without duplicating page layouts. Each project gets its own route for a fuller write-up, screenshots, links, and code examples while the main page stays focused and easy to browse.",
+    tech: ["React", "Vite", "Tailwind CSS", "JavaScript"],
+    demo: "https://rileydrake.ca",
+    highlight: "Personal site",
+    icon: "portfolio",
+  },
+  {
+    slug: "nginx-hosting-server",
+    title: "NGINX Hosting Server",
+    subtitle: "Self-managed multi-site hosting",
+    description:
+      "A self-managed NGINX server that deploys and serves this portfolio alongside my other web projects from one hosting environment.",
+    overview:
+      "I configured and maintain an NGINX server as the public entry point for my web projects. It hosts this portfolio and the other sites I deploy, giving me practical experience with web-server configuration, deployment workflows, and operating multiple projects from a single server environment.",
+    tech: ["NGINX", "Linux", "Web hosting", "Deployment"],
+    highlight: "Infrastructure",
+    icon: "server",
+  },
 ]
 
 export function getProjectBySlug(slug) {

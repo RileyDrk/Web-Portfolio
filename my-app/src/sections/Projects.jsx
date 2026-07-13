@@ -1,4 +1,5 @@
-import { LayoutGrid, CloudSun, ArrowRight } from "lucide-react"
+import { useEffect, useRef } from "react"
+import { LayoutGrid, CloudSun, Monitor, Server, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { projects } from "../data/projects"
 import Reveal from "../components/Reveal"
 import ProjectLinks from "../components/ProjectLinks"
@@ -7,9 +8,39 @@ import { projectHref } from "../router/useRoute"
 const icons = {
   blokus: LayoutGrid,
   weather: CloudSun,
+  portfolio: Monitor,
+  server: Server,
 }
 
 export default function Projects() {
+  const carouselRef = useRef(null)
+
+  useEffect(() => {
+    const carousel = carouselRef.current
+    if (!carousel) return undefined
+
+    function handleWheel(event) {
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return
+
+      event.preventDefault()
+      carousel.scrollBy({ left: event.deltaY, behavior: "auto" })
+    }
+
+    carousel.addEventListener("wheel", handleWheel, { passive: false })
+    return () => carousel.removeEventListener("wheel", handleWheel)
+  }, [])
+
+  function scrollProjects(direction) {
+    const carousel = carouselRef.current
+    if (!carousel) return
+
+    const card = carousel.firstElementChild
+    const gap = Number.parseFloat(window.getComputedStyle(carousel).gap) || 0
+    const projectWidth = card?.getBoundingClientRect().width || carousel.clientWidth
+
+    carousel.scrollBy({ left: direction * (projectWidth + gap), behavior: "smooth" })
+  }
+
   return (
     <section id="projects" className="px-6 py-24 md:py-28">
       <div className="max-w-6xl mx-auto">
@@ -24,12 +55,38 @@ export default function Projects() {
           </p>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
+        <div className="flex items-center justify-between gap-4 mb-6">
+          <p className="text-sm text-muted">Scroll to explore projects</p>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => scrollProjects(-1)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] border-2 border-theme text-theme hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors cursor-pointer"
+              aria-label="Show previous projects"
+            >
+              <ChevronLeft size={20} aria-hidden />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollProjects(1)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] border-2 border-theme text-theme hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors cursor-pointer"
+              aria-label="Show next projects"
+            >
+              <ChevronRight size={20} aria-hidden />
+            </button>
+          </div>
+        </div>
+
+        <div
+          ref={carouselRef}
+          className="flex gap-6 lg:gap-8 overflow-x-auto overscroll-y-contain snap-x snap-mandatory scroll-smooth -mx-2 px-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          aria-label="Project carousel"
+        >
           {projects.map((project, index) => {
             const Icon = icons[project.icon] ?? LayoutGrid
             return (
-              <Reveal key={project.slug} delayMs={index * 80}>
-                <article className="project-card-hover group relative flex flex-col rounded-[var(--radius-xl)] border-2 border-theme bg-[color-mix(in_oklch,var(--surface)_78%,transparent)] dark:bg-[color-mix(in_oklch,var(--surface-muted)_92%,transparent)] p-8 md:p-9 overflow-hidden h-full">
+              <Reveal key={project.slug} delayMs={index * 80} className="w-[min(100%,32rem)] shrink-0 snap-start">
+                <article className="project-card-hover group relative flex flex-col rounded-[var(--radius-xl)] border-2 border-theme bg-surface dark:bg-surface-muted p-8 md:p-9 overflow-hidden h-full">
                   <div
                     className="absolute top-0 right-0 w-32 h-20 rounded-bl-[var(--radius-xl)] opacity-30 translate-x-[20%] -translate-y-1/4 bg-[var(--accent-soft)] pointer-events-none transition-opacity duration-300 group-hover:opacity-50"
                     aria-hidden
@@ -40,7 +97,7 @@ export default function Projects() {
                       <Icon size={28} strokeWidth={1.65} />
                     </div>
                     {project.highlight && (
-                      <span className="text-[0.65rem] font-bold uppercase tracking-[0.22em] px-2 py-1 rounded-[var(--radius-sm)] border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] text-muted whitespace-nowrap">
+                      <span className="text-[0.65rem] font-bold uppercase tracking-[0.22em] px-2 py-1 rounded-[var(--radius-sm)] border-2 border-theme bg-surface-muted text-muted whitespace-nowrap">
                         {project.highlight}
                       </span>
                     )}
@@ -58,7 +115,7 @@ export default function Projects() {
                     {project.tech.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 text-xs font-semibold rounded-[var(--radius-sm)] border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_90%,transparent)] text-theme transition-[background-color,border-color,box-shadow] duration-200 group-hover:bg-[color-mix(in_oklch,var(--accent-soft)_55%,transparent)] group-hover:border-[color-mix(in_oklch,var(--accent)_45%,var(--border))]"
+                        className="px-3 py-1 text-xs font-semibold rounded-[var(--radius-sm)] border-2 border-theme bg-surface-muted text-theme transition-[background-color,border-color,box-shadow] duration-200 group-hover:bg-[var(--accent-soft)] group-hover:border-[color-mix(in_oklch,var(--accent)_45%,var(--border))]"
                       >
                         {tech}
                       </span>

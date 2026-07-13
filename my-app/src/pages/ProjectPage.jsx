@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
-import { ArrowLeft, LayoutGrid, CloudSun } from "lucide-react"
+import { ArrowLeft, LayoutGrid, CloudSun, Monitor, Server } from "lucide-react"
 import Reveal from "../components/Reveal"
 import ProjectLinks from "../components/ProjectLinks"
 import ProjectScreenshotGallery from "../components/ProjectScreenshotGallery"
@@ -9,6 +9,8 @@ import { goHome } from "../router/useRoute"
 const icons = {
   blokus: LayoutGrid,
   weather: CloudSun,
+  portfolio: Monitor,
+  server: Server,
 }
 
 export default function ProjectPage({ project }) {
@@ -42,7 +44,7 @@ export default function ProjectPage({ project }) {
               <Icon size={28} strokeWidth={1.65} aria-hidden />
             </span>
             {project.highlight && (
-              <span className="text-[0.65rem] font-bold uppercase tracking-[0.22em] px-2 py-1 rounded-[var(--radius-sm)] border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] text-muted">
+              <span className="text-[0.65rem] font-bold uppercase tracking-[0.22em] px-2 py-1 rounded-[var(--radius-sm)] border-2 border-theme bg-surface-muted text-muted">
                 {project.highlight}
               </span>
             )}
@@ -57,7 +59,7 @@ export default function ProjectPage({ project }) {
             {project.tech.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 text-xs font-semibold rounded-[var(--radius-sm)] border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_90%,transparent)] text-theme"
+                className="px-3 py-1 text-xs font-semibold rounded-[var(--radius-sm)] border-2 border-theme bg-surface-muted text-theme"
               >
                 {tech}
               </span>
@@ -89,7 +91,7 @@ export default function ProjectPage({ project }) {
                 onVisibleChange={setVisibleCount}
               />
               {visibleCount === 0 ? (
-                <p className="text-muted text-sm leading-relaxed rounded-[var(--radius-lg)] border-2 border-dashed border-theme px-5 py-4 bg-[color-mix(in_oklch,var(--surface-muted)_70%,transparent)]">
+                <p className="text-muted text-sm leading-relaxed rounded-[var(--radius-lg)] border-2 border-dashed border-theme px-5 py-4 bg-surface-muted">
                   Screenshots are listed in projects.js but the files are missing or the src path does not match the
                   filename. Check public/projects/{project.slug}/ and src/assets/projects/{project.slug}/, then restart
                   npm run dev.

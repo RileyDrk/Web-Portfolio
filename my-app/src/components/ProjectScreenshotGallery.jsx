@@ -61,7 +61,7 @@ export default function ProjectScreenshotGallery({ figures, onVisibleChange }) {
         }
       }}
     >
-      <figure className="rounded-[var(--radius-xl)] border-2 border-theme overflow-hidden bg-[color-mix(in_oklch,var(--surface)_92%,transparent)] shadow-[var(--shadow-card)]">
+      <figure className="rounded-[var(--radius-xl)] border-2 border-theme overflow-hidden bg-surface shadow-[var(--shadow-card)]">
         <div className="relative bg-surface-muted">
           <img
             key={current.key}

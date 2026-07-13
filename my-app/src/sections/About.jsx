@@ -15,7 +15,7 @@ export default function About() {
 
         <div className="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-10 lg:gap-14 items-start">
           <Reveal delayMs={60}>
-            <div className="rounded-[var(--radius-xl)] border-2 border-theme bg-[color-mix(in_oklch,var(--surface)_92%,transparent)] dark:bg-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] p-8 md:p-10 shadow-[var(--shadow-card)]">
+            <div className="rounded-[var(--radius-xl)] border-2 border-theme bg-surface dark:bg-surface-muted p-8 md:p-10 shadow-[var(--shadow-card)]">
               <div className="space-y-5 text-muted text-lg leading-relaxed">
                 {about.paragraphs.map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>
@@ -39,7 +39,7 @@ export default function About() {
           </Reveal>
 
           <Reveal delayMs={120}>
-            <div className="rounded-[var(--radius-xl)] border-2 border-theme bg-[color-mix(in_oklch,var(--surface-muted)_88%,transparent)] p-8 md:p-9 space-y-6">
+            <div className="rounded-[var(--radius-xl)] border-2 border-theme bg-surface dark:bg-surface-muted p-8 md:p-9 space-y-6">
               {about.facts.map(({ label, value }) => (
                 <div key={label}>
                   <p className="section-label mb-2 normal-case tracking-[0.18em] text-[0.68rem]">

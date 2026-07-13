@@ -29,7 +29,7 @@ export default function Skills() {
             const Icon = icons[icon] ?? Sparkles
             return (
               <Reveal key={title} delayMs={index * 70}>
-                <div className="skill-panel rounded-[var(--radius-xl)] border-2 border-theme bg-[color-mix(in_oklch,var(--surface)_92%,transparent)] dark:bg-[color-mix(in_oklch,var(--surface-muted)_94%,transparent)] p-8 h-full">
+                <div className="skill-panel rounded-[var(--radius-xl)] border-2 border-theme bg-surface dark:bg-surface-muted p-8 h-full">
                   <div className="flex items-center gap-3 mb-5">
                     <span className="skill-icon-ring flex h-12 w-12 items-center justify-center rounded-[var(--radius-lg)] border-2 border-[color-mix(in_oklch,var(--accent)_35%,var(--border))] bg-[var(--accent-soft)] text-[var(--accent)] shadow-[var(--retro-shadow-sm)]">
                       <Icon size={22} strokeWidth={1.72} />

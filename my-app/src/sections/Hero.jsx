@@ -71,10 +71,10 @@ export default function Hero() {
             <span className="chip chip-subtle px-4 py-1.5 rounded-[var(--radius-lg)] text-sm font-semibold border-2 border-theme bg-surface-muted">
               Game systems
             </span>
-            <span className="chip chip-subtle chip-tone px-4 py-1.5 rounded-[var(--radius-lg)] text-sm font-semibold">
+            <span className="chip chip-subtle px-4 py-1.5 rounded-[var(--radius-lg)] text-sm font-semibold border-2 border-theme bg-surface-muted">
               Robotics focus
             </span>
-            <span className="chip chip-accent px-4 py-1.5 rounded-[var(--radius-lg)] text-sm font-semibold border-2 border-theme bg-[var(--accent-soft)] text-theme shadow-[var(--retro-shadow-sm)]">
+            <span className="chip chip-subtle px-4 py-1.5 rounded-[var(--radius-lg)] text-sm font-semibold border-2 border-theme bg-surface-muted">
               Computer vision
             </span>
           </div>

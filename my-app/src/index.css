@@ -11,12 +11,12 @@
   --radius-xl: 0;
 
   /* Swatches */
-  --palette-peach: #f6c992;
-  --palette-salmon: #f67280;
-  --palette-frost: #acc0d3;
-  --palette-rose: #d396a6;
-  --palette-teal: #09a1a1;
-  --palette-steel: #5484a4;
+  --palette-peach: #79a6d3;
+  --palette-salmon: #2563eb;
+  --palette-frost: #eef2f7;
+  --palette-rose: #dbeafe;
+  --palette-teal: #2563eb;
+  --palette-steel: #64748b;
 
   /* Light: cool canvas + warm accents (swapped vs. previous light) */
   --bg: color-mix(in srgb, white 70%, color-mix(in srgb, var(--palette-peach) 78%, var(--palette-steel)));
@@ -82,72 +82,73 @@
   --shadow-card: var(--retro-shadow);
 }
 
-/* Polished retro palette: warm paper, botanical green, coral signal, and deep ink. */
+/* Simple theme: neutral surfaces with one blue accent. */
 :root {
   --radius-sm: 0.5rem;
   --radius-lg: 0.85rem;
   --radius-xl: 1.15rem;
-  --palette-paper: #fff8ec;
-  --palette-linen: #f0e3cc;
-  --palette-ink: #242331;
-  --palette-forest: #176b5c;
-  --palette-mint: #75c9b7;
-  --palette-coral: #d95f59;
-  --palette-gold: #d99a2b;
-  --palette-plum: #5d4b73;
-  --palette-steel: #607482;
-  --bg: #f7ecd8;
-  --surface: #fffaf0;
-  --surface-muted: #eadcc3;
-  --text: #191923;
-  --text-muted: #404a50;
-  --border: #2d3340;
-  --accent: var(--palette-forest);
-  --accent-secondary: var(--palette-coral);
-  --accent-soft: color-mix(in srgb, var(--palette-forest) 14%, transparent);
-  --glow: color-mix(in srgb, var(--palette-mint) 22%, transparent);
-  --accent-foreground: #fffaf0;
-  --highlight: var(--palette-gold);
-  --highlight-soft: color-mix(in srgb, var(--palette-gold) 22%, transparent);
-  --highlight-muted: color-mix(in srgb, var(--palette-gold) 15%, var(--surface));
-  --tone-warm: color-mix(in srgb, var(--palette-gold) 12%, var(--bg));
-  --tone-cool: color-mix(in srgb, var(--palette-mint) 16%, var(--bg));
-  --tone-band: color-mix(in srgb, var(--palette-coral) 8%, var(--bg));
+  --bg: #f6f9ff;
+  --surface: #ffffff;
+  --surface-muted: #f2f7fe;
+  --text: #172033;
+  --text-muted: #5b6a82;
+  --border: #d7dee9;
+  --accent: #2563eb;
+  --accent-secondary: var(--accent);
+  --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent);
+  --glow: color-mix(in srgb, var(--accent) 15%, transparent);
+  --accent-foreground: #ffffff;
+  --highlight: var(--accent);
+  --highlight-soft: color-mix(in srgb, var(--accent) 10%, transparent);
+  --highlight-muted: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  --tone-warm: var(--bg);
+  --tone-cool: color-mix(in srgb, var(--accent) 7%, var(--bg));
+  --tone-band: var(--bg);
   --border-muted: color-mix(in srgb, var(--border) 18%, transparent);
-  --border-section: color-mix(in srgb, var(--border) 34%, var(--surface-muted));
-  --circuit-1: color-mix(in srgb, var(--palette-mint) 18%, transparent);
-  --circuit-2: color-mix(in srgb, var(--palette-gold) 12%, transparent);
-  --circuit-3: color-mix(in srgb, var(--palette-coral) 8%, transparent);
-  --shadow-ink: #191a25;
-  --retro-shadow: 5px 5px 0 var(--shadow-ink);
-  --retro-shadow-sm: 3px 3px 0 var(--shadow-ink);
+  --border-section: #dbe5f2;
+  --circuit-1: color-mix(in srgb, var(--accent) 10%, transparent);
+  --circuit-2: color-mix(in srgb, var(--accent) 7%, transparent);
+  --circuit-3: color-mix(in srgb, var(--accent) 5%, transparent);
+  --blob-1: color-mix(in srgb, var(--accent) 10%, transparent);
+  --blob-2: color-mix(in srgb, var(--accent) 7%, transparent);
+  --blob-3: color-mix(in srgb, var(--accent) 5%, transparent);
+  --blob-warm: color-mix(in srgb, var(--accent) 8%, transparent);
+  --blob-cool: color-mix(in srgb, var(--accent) 6%, transparent);
+  --shadow-ink: #b8c2d1;
+  --retro-shadow: 3px 3px 0 var(--shadow-ink);
+  --retro-shadow-sm: 2px 2px 0 var(--shadow-ink);
   --shadow-card: var(--retro-shadow);
 }
 
 .dark {
-  --bg: #181522;
-  --surface: #241f31;
-  --surface-muted: #302a3b;
-  --text: #fff8ed;
-  --text-muted: #e0d8cb;
-  --border: #79d7c0;
-  --accent: #79d7c0;
-  --accent-secondary: #ff8a7a;
-  --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
-  --glow: color-mix(in srgb, var(--accent) 24%, transparent);
-  --accent-foreground: #15131d;
-  --highlight: #f1bd58;
-  --highlight-soft: color-mix(in srgb, var(--highlight) 18%, transparent);
-  --highlight-muted: color-mix(in srgb, var(--highlight) 10%, var(--surface));
-  --tone-warm: color-mix(in srgb, var(--highlight) 8%, var(--bg));
-  --tone-cool: color-mix(in srgb, var(--accent) 11%, var(--bg));
-  --tone-band: color-mix(in srgb, var(--accent-secondary) 7%, var(--bg));
+  --bg: #111827;
+  --surface: #182235;
+  --surface-muted: #253149;
+  --text: #f8fafc;
+  --text-muted: #bac6d8;
+  --border: #40516d;
+  --accent: #60a5fa;
+  --accent-secondary: var(--accent);
+  --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+  --glow: color-mix(in srgb, var(--accent) 20%, transparent);
+  --accent-foreground: #111827;
+  --highlight: var(--accent);
+  --highlight-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+  --highlight-muted: color-mix(in srgb, var(--accent) 8%, var(--surface));
+  --tone-warm: color-mix(in srgb, var(--accent) 5%, var(--bg));
+  --tone-cool: color-mix(in srgb, var(--accent) 7%, var(--bg));
+  --tone-band: color-mix(in srgb, var(--accent) 4%, var(--bg));
   --border-muted: color-mix(in srgb, var(--border) 24%, transparent);
   --border-section: color-mix(in srgb, var(--border) 30%, var(--surface-muted));
-  --circuit-1: color-mix(in srgb, var(--accent) 12%, transparent);
-  --circuit-2: color-mix(in srgb, var(--highlight) 10%, transparent);
-  --circuit-3: color-mix(in srgb, var(--accent-secondary) 8%, transparent);
-  --shadow-ink: #07060c;
+  --circuit-1: color-mix(in srgb, var(--accent) 10%, transparent);
+  --circuit-2: color-mix(in srgb, var(--accent) 7%, transparent);
+  --circuit-3: color-mix(in srgb, var(--accent) 5%, transparent);
+  --blob-1: color-mix(in srgb, var(--accent) 10%, transparent);
+  --blob-2: color-mix(in srgb, var(--accent) 7%, transparent);
+  --blob-3: color-mix(in srgb, var(--accent) 5%, transparent);
+  --blob-warm: color-mix(in srgb, var(--accent) 8%, transparent);
+  --blob-cool: color-mix(in srgb, var(--accent) 6%, transparent);
+  --shadow-ink: #080d18;
   --retro-shadow: 5px 5px 0 var(--shadow-ink);
   --retro-shadow-sm: 3px 3px 0 var(--shadow-ink);
   --shadow-card: var(--retro-shadow);
@@ -289,20 +290,7 @@ html:not(.dark) body {
 }
 
 .page-backdrop__mesh {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(color-mix(in oklch, var(--border-muted) 55%, var(--text)) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in oklch, var(--border-muted) 55%, var(--text)) 1px, transparent 1px);
-  background-size: 28px 28px;
-  opacity: 0.24;
-  -webkit-mask-image: none;
-  mask-image: none;
-  transition: opacity var(--duration-theme) var(--ease-gentle);
-}
-
-.dark .page-backdrop__mesh {
-  opacity: 0.18;
+  display: none;
 }
 
 .page-backdrop__vignette {
