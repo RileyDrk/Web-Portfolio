@@ -13,7 +13,7 @@ function productionBase() {
   if (fromEnv) return fromEnv.endsWith('/') ? fromEnv : `${fromEnv}/`
   const repo = process.env.GITHUB_REPOSITORY
   if (repo && repo.includes('/')) return `/${repo.split('/')[1]}/`
-  return '/Web-Portfolio/'
+  return '/'
 }
 
 function spaFallback404() {
