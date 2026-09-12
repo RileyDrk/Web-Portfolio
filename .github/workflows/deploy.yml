@@ -10,24 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check SSH secret exists
+      - name: Prepare SSH key
         shell: bash
         env:
-          SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SSH_KEY_B64: ${{ secrets.SERVER_SSH_KEY_B64 }}
         run: |
-          if [ -z "$SSH_KEY" ]; then
-            echo "SERVER_SSH_KEY is EMPTY"
-            exit 1
-          else
-            echo "SERVER_SSH_KEY is present"
-          fi
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY_B64" | base64 -d > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
 
       - name: Deploy to server
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: 22
-          script: |
-            /home/riley-drake/Projects/Websites/Web-Portfolio/deploy.sh
+        shell: bash
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+        run: |
+          ssh -o StrictHostKeyChecking=no \
+              -i ~/.ssh/deploy_key \
+              "$SERVER_USER@$SERVER_HOST" \
+              "/home/riley-drake/Projects/Websites/Web-Portfolio/deploy.sh"
