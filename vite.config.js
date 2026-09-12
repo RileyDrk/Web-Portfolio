@@ -7,12 +7,15 @@ import { resolve } from 'node:path'
 /** GitHub project page: /<repo>/ (e.g. /Web-Portfolio/). Root domains (Vercel, etc.): /. */
 function productionBase() {
   const fromEnv =
-    typeof process.env.VITE_BASE === 'string' && process.env.VITE_BASE.trim() !== ''
+    typeof process.env.VITE_BASE === 'string' &&
+    process.env.VITE_BASE.trim() !== ''
       ? process.env.VITE_BASE
       : null
-  if (fromEnv) return fromEnv.endsWith('/') ? fromEnv : `${fromEnv}/`
-  const repo = process.env.GITHUB_REPOSITORY
-  if (repo && repo.includes('/')) return `/${repo.split('/')[1]}/`
+
+  if (fromEnv) {
+    return fromEnv.endsWith('/') ? fromEnv : `${fromEnv}/`
+  }
+
   return '/'
 }
 
