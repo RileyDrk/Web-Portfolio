@@ -1,5 +1,12 @@
 export const organizations = [
   {
+    name: "MUN Computer Science",
+    role: "Undergraduate Representative",
+    description:
+      "Representing undergraduate Computer Science students at Memorial University of Newfoundland.",
+    icon: "community",
+  },
+  {
     name: "MUN Computer Science Society",
     role: "Executive",
     description:
@@ -10,7 +17,7 @@ export const organizations = [
     name: "FormulaMUN",
     role: "Software Team Member",
     description:
-      "Collaborating with engineers and computer scientists to build a FormulaSAE electric car, developing its dashboard and telemetry systems and assisting with electrical work where needed.",
+      "Collaborating with engineers to build a FormulaSAE electric car, developing its dashboard and telemetry systems and assisting with electrical work where needed.",
     icon: "software",
   },
 ]

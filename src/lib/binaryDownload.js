@@ -14,7 +14,7 @@ export async function downloadJarSmart(assetHref, suggestedName = "Blokus.jar") 
     ? assetHref
     : new URL(assetHref, window.location.origin).href
 
-  if (!absoluteHref.startsWith(window.location.origin)) {
+  if (new URL(absoluteHref).origin !== window.location.origin) {
     window.open(absoluteHref, "_blank", "noopener,noreferrer")
     return
   }

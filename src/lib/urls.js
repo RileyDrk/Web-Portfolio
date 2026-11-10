@@ -12,12 +12,6 @@ export function publicAssetUrl(path) {
   return `${base}${encoded}`
 }
 
-/** Default profile links — use in Navbar, footer, Contact. */
-export const profileLinks = {
-  github: "https://github.com/RileyDrk",
-  linkedin: "https://linkedin.com/in/riley-drk",
-}
-
 /** RFC 6068–friendly mailto: encodeURIComponent avoids + for spaces breaking some clients. */
 export function contactMailtoHref(opts = {}) {
   const to = opts.to ?? "rileydrk123@gmail.com"

@@ -21,13 +21,13 @@ export default function ProjectCard({ project, compact = false }) {
         <ProjectCover project={project} />
       </a>
       <div className="flex flex-col flex-1 p-7 md:p-8 min-w-0">
-      <div className="relative flex justify-between items-start gap-4 mb-5">
+      <div className="relative flex flex-wrap justify-between items-start gap-4 mb-5">
         <div className="project-card-icon flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center rounded-[var(--radius-lg)] bg-[var(--accent-soft)] border-2 border-[color-mix(in_oklch,var(--accent)_35%,var(--border))] text-[var(--accent)] shadow-[var(--retro-shadow-sm)]">
           <Icon size={26} strokeWidth={1.65} aria-hidden />
         </div>
         {project.highlight && <span className="text-[0.65rem] font-bold uppercase tracking-[0.18em] px-2 py-1 rounded-[var(--radius-sm)] border-2 border-theme bg-surface-muted text-muted whitespace-nowrap">{project.highlight}</span>}
       </div>
-      <h3 className="relative text-xl md:text-2xl font-bold text-theme mb-1">{project.title}</h3>
+      <h3 className="relative text-xl md:text-2xl font-bold text-theme mb-1"><a href={projectHref(project.slug)} className="hover:underline underline-offset-4">{project.title}</a></h3>
       <p className="relative text-sm font-semibold text-[var(--accent)] mb-4">{project.subtitle}</p>
       <p className={`relative text-muted leading-relaxed ${compact ? "text-sm" : ""}`}>{project.description}</p>
       <div className="relative flex flex-wrap gap-2 my-6">

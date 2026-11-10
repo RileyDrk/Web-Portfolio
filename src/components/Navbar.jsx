@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react"
-import { Sun, Moon, Menu, X, Github, Linkedin, Download } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { Sun, Moon, Menu, X, Download } from "lucide-react"
 import { about } from "../data/about"
 import { resumeHref, resumeLinkProps } from "../lib/resume"
-import { profileLinks } from "../lib/urls"
 
 const links = [
   { href: "#about", label: "About" },
@@ -55,55 +54,31 @@ function ThemeToggleInner({ darkMode, onToggle, compact }) {
   )
 }
 
-function SocialIcons({ compact = false }) {
-  const base =
-    "inline-flex items-center justify-center rounded-[var(--radius-lg)] border-2 border-theme bg-surface-muted text-muted transition-[color,background-color,transform,border-color] duration-200 hover:bg-[var(--accent-soft)] hover:border-[color-mix(in_oklch,var(--accent)_35%,var(--border))] hover:text-[var(--accent)] active:translate-x-[1px] active:translate-y-[1px] shadow-[var(--retro-shadow-sm)] hover:shadow-[var(--retro-shadow)]"
-  const size = compact ? "size-11" : "size-10"
-  const iconSz = compact ? 20 : 19
-  return (
-    <span className="flex items-center gap-2 shrink-0">
-      <a
-        href={profileLinks.github}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`${base} ${size}`}
-        aria-label="GitHub profile"
-      >
-        <Github size={iconSz} strokeWidth={1.9} aria-hidden />
-      </a>
-      <a
-        href={profileLinks.linkedin}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`${base} ${size}`}
-        aria-label="LinkedIn profile"
-      >
-        <Linkedin size={iconSz} strokeWidth={1.9} aria-hidden />
-      </a>
-    </span>
-  )
-}
-
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuButtonRef = useRef(null)
   const resumeLink = resumeHref()
   const showResume = Boolean(resumeLink && about.resume?.label)
-  const [darkMode, setDarkMode] = useState(
-    typeof window !== "undefined" ? localStorage.getItem("theme") !== "light" : true,
-  )
+  const [darkMode, setDarkMode] = useState(() => {
+    try {
+      return localStorage.getItem("theme") !== "light"
+    } catch {
+      return true
+    }
+  })
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark")
-      localStorage.setItem("theme", "dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-      localStorage.setItem("theme", "light")
+    document.documentElement.classList.toggle("dark", darkMode)
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", darkMode ? "#111214" : "#f1f8f5")
+    try {
+      localStorage.setItem("theme", darkMode ? "dark" : "light")
+    } catch {
+      // Theme switching still works when browser storage is unavailable.
     }
   }, [darkMode])
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)")
+    const mq = window.matchMedia("(min-width: 1024px)")
     const handleChange = (event) => {
       if (event.matches) setMenuOpen(false)
     }
@@ -111,26 +86,39 @@ export default function Navbar() {
     return () => mq.removeEventListener("change", handleChange)
   }, [])
 
+  useEffect(() => {
+    if (!menuOpen) return
+    const dismiss = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false)
+        menuButtonRef.current?.focus()
+      }
+    }
+    window.addEventListener("keydown", dismiss)
+    return () => window.removeEventListener("keydown", dismiss)
+  }, [menuOpen])
+
   return (
-    <nav className="glass-nav sticky top-0 z-50 transition-shadow duration-[var(--duration-theme)]">
+    <nav aria-label="Main navigation" className="glass-nav sticky top-0 z-50 transition-shadow duration-[var(--duration-theme)]">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-[4.125rem]">
           <a
             href="#hero"
+            onClick={() => setMenuOpen(false)}
             className="text-lg font-bold tracking-normal accent transition-opacity duration-300 hover:opacity-[0.92]"
           >
             Riley Drake
           </a>
 
           <div className="hidden lg:flex items-center text-[0.93rem] font-medium">
-            <div className="flex items-center gap-10">
+            <div className="flex items-center gap-6 xl:gap-10">
               {links.map(({ href, label }) => (
                 <a key={href} href={href} className="nav-link-desktop text-muted">
                   {label}
                 </a>
               ))}
             </div>
-            <div className="flex items-center gap-3 ml-10 pl-10 border-l border-theme/60">
+            <div className="flex items-center gap-3 ml-6 pl-6 xl:ml-10 xl:pl-10 border-l border-theme/60">
               {showResume && (
                 <a
                   {...resumeLinkProps(resumeLink)}
@@ -140,20 +128,20 @@ export default function Navbar() {
                   Resume
                 </a>
               )}
-              <SocialIcons compact={false} />
               <ThemeToggleInner darkMode={darkMode} compact={false} onToggle={() => setDarkMode(!darkMode)} />
             </div>
           </div>
 
           <div className="flex items-center gap-2 lg:hidden">
-            <SocialIcons compact />
             <ThemeToggleInner darkMode={darkMode} compact onToggle={() => setDarkMode(!darkMode)} />
             <button
+              ref={menuButtonRef}
               type="button"
               className="p-2.5 rounded-[var(--radius-lg)] border-2 border-theme bg-surface-muted text-theme shadow-[var(--retro-shadow-sm)] transition-[transform,background-color] duration-200 hover:bg-surface-muted active:translate-x-[1px] active:translate-y-[1px]"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-expanded={menuOpen}
-              aria-label="Menu"
+              aria-controls="mobile-navigation"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
               {menuOpen ? <X size={22} strokeWidth={1.75} /> : <Menu size={22} strokeWidth={1.75} />}
             </button>
@@ -161,7 +149,7 @@ export default function Navbar() {
         </div>
 
         {menuOpen && (
-          <div className="lg:hidden mobile-menu-sheet border-t border-theme py-5 flex flex-col gap-1">
+          <div id="mobile-navigation" className="lg:hidden mobile-menu-sheet border-t border-theme py-5 flex flex-col gap-1">
             {links.map(({ href, label }) => (
               <a
                 key={href}
@@ -182,22 +170,6 @@ export default function Navbar() {
                   <Download size={18} aria-hidden /> Resume
                 </a>
               )}
-              <a
-                href={profileLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 accent"
-              >
-                <Github size={18} aria-hidden /> GitHub
-              </a>
-              <a
-                href={profileLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 accent"
-              >
-                <Linkedin size={18} aria-hidden /> LinkedIn
-              </a>
             </div>
           </div>
         )}

@@ -1,6 +1,6 @@
 import { Code2, Users } from "lucide-react"
 import Reveal from "../components/Reveal"
-import { organizations } from "../data/experience"
+import { organizations } from "../data/organizations"
 
 const icons = {
   community: Users,
@@ -13,13 +13,13 @@ export default function Organizations() {
       <div className="max-w-6xl mx-auto">
         <Reveal className="max-w-2xl mb-14">
           <p className="section-label mb-3">Beyond the classroom</p>
-          <h2 className="text-3xl md:text-5xl font-bold text-theme mb-4 tracking-normal">Clubs &amp; organizations</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-theme mb-4 tracking-normal">Community &amp; involvement</h2>
           <p className="text-muted text-lg leading-relaxed">
             Communities where I contribute to software, collaborate with peers, and keep learning.
           </p>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
           {organizations.map((organization, index) => {
             const Icon = icons[organization.icon] ?? Users
             return (

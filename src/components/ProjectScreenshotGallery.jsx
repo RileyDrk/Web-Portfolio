@@ -87,11 +87,14 @@ export default function ProjectScreenshotGallery({ figures, onVisibleChange }) {
         </div>
 
         <figcaption className="px-5 py-4 border-t-2 border-theme">
+          <a href={current.href} target="_blank" rel="noopener noreferrer" className="inline-flex text-sm font-semibold accent underline underline-offset-4 mb-2">
+            Open full-size image<span className="sr-only"> (opens in a new tab)</span>
+          </a>
           {current.caption ? (
             <p className="text-sm text-muted leading-relaxed">{current.caption}</p>
           ) : null}
           {hasMultiple ? (
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted mt-3">
+            <p aria-live="polite" aria-atomic="true" className="text-xs font-semibold uppercase tracking-[0.18em] text-muted mt-3">
               {currentIndex + 1} of {slides.length}
             </p>
           ) : null}

@@ -13,6 +13,7 @@ export const about = {
   highlights: [
     "Coursework includes object-oriented programming, data structures and algorithms, artificial intelligence, software design, team development, and version control.",
     "Contributing to FormulaMUN's electric vehicle dashboard and telemetry software.",
+    "Undergraduate Representative for Computer Science at Memorial University of Newfoundland.",
     "Executive member of the MUN Computer Science Society, supporting community tools and activities.",
   ],
   resume: {

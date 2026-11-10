@@ -139,10 +139,17 @@ private int countNewCorners(MoveOption move, Piece test, int playerIdx) {
     description:
       "Developing the dashboard and telemetry software for FormulaMUN's electric vehicle, turning live CAN data into clear vehicle and driver information.",
     overview:
-      "As a FormulaMUN software team member, I am developing a C++ dashboard for displaying vehicle data and driver information, alongside Python-based telemetry software that collects, processes, and displays live data from the CAN system. I also built a testing interface and reusable modules to support future vehicle integration and development.",
-    tech: ["C++", "Python", "CAN", "Real-time data"],
+      "As a FormulaMUN software team member, I am developing a dashboard using Qt/QML and C++ for displaying vehicle data and driver information, alongside telemetry software that collects, processes, and displays live data from the CAN system. I also built a testing interface and reusable modules to support future vehicle integration and development.",
+    tech: ["C++", "Qt/QML", "CAN", "Real-time data"],
     highlight: "FormulaMUN",
     icon: "telemetry",
+    screenshots: [
+      {
+        src: "projects/fsae-dashboard-telemetry/dashboard.png",
+        alt: "FSAE dashboard showing system status, speed, battery state of charge, lap time, and motor, inverter, and battery temperatures",
+        caption: "Qt/QML dashboard with system status, speed, battery charge, lap time, and temperature monitoring for the motor, inverter, and battery.",
+      },
+    ],
   },
   {
     slug: "weather-dashboard",
@@ -293,13 +300,13 @@ private int countNewCorners(MoveOption move, Piece test, int playerIdx) {
   },
   {
     slug: "nginx-hosting-server",
-    title: "NGINX Hosting Server",
-    subtitle: "Self-managed multi-site hosting",
+    title: "Home Lab",
+    subtitle: "Self-hosted websites, game servers, and databases",
     description:
-      "A self-managed NGINX server that deploys and serves this portfolio alongside my other web projects from one hosting environment.",
+      "A self-managed home lab hosting websites, applications, and game servers, with AMP server management and databases supporting my other projects.",
     overview:
-      "I configured and maintain an Ubuntu server for websites, applications, and dedicated game servers. I manage NGINX, DNS, SSL certificates, port forwarding, SteamCMD, and AMP alongside deployment workflows for multiple projects.",
-    tech: ["NGINX", "Ubuntu", "SSL", "SteamCMD"],
+      "I configured and maintain an Ubuntu-based home lab for websites, applications, and dedicated game servers. I manage web hosting with NGINX, DNS, SSL certificates, and port forwarding, use AMP and SteamCMD to manage game servers, and manage databases that support my other projects. The lab also hosts deployment workflows for my portfolio and other web applications.",
+    tech: ["Ubuntu", "NGINX", "AMP", "SteamCMD", "Database management", "SSL"],
     highlight: "Infrastructure",
     icon: "server",
   },

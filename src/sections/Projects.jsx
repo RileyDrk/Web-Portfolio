@@ -30,7 +30,8 @@ export default function Projects() {
     const card = carousel.firstElementChild
     const gap = Number.parseFloat(window.getComputedStyle(carousel).gap) || 0
     const projectWidth = card?.getBoundingClientRect().width || carousel.clientWidth
-    carousel.scrollBy({ left: direction * (projectWidth + gap), behavior: "smooth" })
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth"
+    carousel.scrollBy({ left: direction * (projectWidth + gap), behavior })
   }
 
   return (

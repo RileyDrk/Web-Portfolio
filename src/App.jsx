@@ -1,66 +1,51 @@
 import { useEffect } from "react"
 import Navbar from "./components/Navbar"
-import Hero from "./sections/Hero"
-import About from "./sections/About"
-import Projects from "./sections/Projects"
-import Skills from "./sections/Skills"
-import Organizations from "./sections/Organizations"
-import Contact from "./sections/Contact"
+import BackgroundDecals from "./components/BackgroundDecals"
+import HomePage from "./pages/HomePage"
 import ProjectPage from "./pages/ProjectPage"
 import ProjectsPage from "./pages/ProjectsPage"
 import { getProjectBySlug } from "./data/projects"
 import { goHome, useRoute } from "./router/useRoute"
-
-function HomePage() {
-  return (
-    <>
-      <Hero />
-      <About />
-      <Projects />
-      <Skills />
-      <Organizations />
-      <Contact />
-    </>
-  )
-}
 
 export default function App() {
   const route = useRoute()
   const project = route.page === "project" ? getProjectBySlug(route.slug) : null
 
   useEffect(() => {
+    document.title = project
+      ? `${project.title} | Riley Drake`
+      : route.page === "projects" ? "Projects | Riley Drake" : "Riley Drake | Portfolio"
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth"
     if (route.page === "project") {
       if (!project) {
         goHome()
         return
       }
-      window.scrollTo({ top: 0, behavior: "smooth" })
+      window.scrollTo({ top: 0, behavior })
       return
     }
 
     const hash = window.location.hash
     if (!hash || hash.startsWith("#/projects")) {
-      window.scrollTo({ top: 0, behavior: "smooth" })
+      window.scrollTo({ top: 0, behavior })
       return
     }
 
     const id = hash.replace(/^#/, "")
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })
+    document.getElementById(id)?.scrollIntoView({ behavior, block: "start" })
   }, [route, project])
 
   return (
     <div className="bg-theme text-theme min-h-screen transition-[background-color,color] duration-500 ease-out relative">
-      <div className="page-backdrop" aria-hidden="true">
-        <div className="page-backdrop__blob page-backdrop__blob--1" />
-        <div className="page-backdrop__blob page-backdrop__blob--2" />
-        <div className="page-backdrop__blob page-backdrop__blob--3" />
-        <div className="page-backdrop__mesh" />
-        <div className="page-backdrop__vignette" />
-      </div>
+      <BackgroundDecals />
+      <a href="#main-content" className="skip-link" onClick={(event) => {
+        event.preventDefault()
+        document.getElementById("main-content")?.focus()
+      }}>Skip to content</a>
 
       <Navbar />
 
-      <main className="relative z-10 pt-20">
+      <main id="main-content" tabIndex={-1} className="relative z-10">
         {route.page === "project" && project ? (
           <ProjectPage key={project.slug} project={project} />
         ) : route.page === "projects" ? (

@@ -90,9 +90,7 @@ export default function ProjectPage({ project }) {
               />
               {visibleCount === 0 ? (
                 <p className="text-muted text-sm leading-relaxed rounded-[var(--radius-lg)] border-2 border-dashed border-theme px-5 py-4 bg-surface-muted">
-                  Screenshots are listed in projects.js but the files are missing or the src path does not match the
-                  filename. Check public/projects/{project.slug}/ and src/assets/projects/{project.slug}/, then restart
-                  npm run dev.
+                  Screenshots are temporarily unavailable. Please try again later.
                 </p>
               ) : null}
             </section>
