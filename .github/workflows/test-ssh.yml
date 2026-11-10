@@ -1,0 +1,62 @@
+name: Test SSH Connectivity
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  connectivity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    env:
+      SERVER_HOST: ${{ secrets.SERVER_HOST }}
+      SERVER_PORT: ${{ secrets.SERVER_PORT || '22' }}
+    steps:
+      - name: Check SSH from GitHub's network
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os
+          import socket
+          import sys
+
+          host = os.environ.get("SERVER_HOST", "").strip()
+          if not host:
+              print("::error::Set the SERVER_HOST repository secret.")
+              sys.exit(1)
+          try:
+              port = int(os.environ["SERVER_PORT"])
+              if not 1 <= port <= 65535:
+                  raise ValueError
+          except ValueError:
+              print("::error::SERVER_PORT must be a number from 1 to 65535.")
+              sys.exit(1)
+
+          try:
+              with socket.create_connection((host, port), timeout=10) as connection:
+                  print("TCP connection succeeded from GitHub.")
+                  connection.settimeout(10)
+                  banner = b""
+                  while b"\n" not in banner and len(banner) < 1024:
+                      part = connection.recv(1024 - len(banner))
+                      if not part:
+                          break
+                      banner += part
+                  if not banner.startswith(b"SSH-"):
+                      print("::error::Port is reachable, but no SSH greeting was received. Check the service and forwarding destination.")
+                      sys.exit(1)
+                  print("SSH greeting received. Network connectivity is working; no login was attempted.")
+          except socket.gaierror:
+              print("::error::SERVER_HOST could not be resolved. Check its value.")
+              sys.exit(1)
+          except ConnectionRefusedError:
+              print("::error::Connection refused. Check the SSH listener and forwarding destination.")
+              sys.exit(1)
+          except TimeoutError:
+              print("::error::Connection or SSH greeting timed out. Check forwarding, filtering, and the network path.")
+              sys.exit(1)
+          except OSError:
+              print("::error::Network connection failed. Check the server address and network path.")
+              sys.exit(1)
+          PY

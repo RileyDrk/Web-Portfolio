@@ -6,7 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 
 for dependency in git node npm; do
   if ! command -v "$dependency" > /dev/null 2>&1; then
-    echo "Missing $dependency. Make sure it is available to the runner service user." >&2
+    echo "Missing $dependency. Make sure it is available in the deployment user's non-interactive SSH session." >&2
     exit 1
   fi
 done

@@ -15,12 +15,50 @@ concurrency:
 jobs:
   deploy:
     if: github.ref == 'refs/heads/main'
-    runs-on: [self-hosted, linux, portfolio-deploy]
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     defaults:
       run:
         shell: bash
+    env:
+      SERVER_HOST: ${{ secrets.SERVER_HOST }}
+      SERVER_USER: ${{ secrets.SERVER_USER }}
+      SERVER_PORT: ${{ secrets.SERVER_PORT || '22' }}
     steps:
-      - name: Deploy on hosting server
-        working-directory: /home/riley-drake/Projects/Websites/Web-Portfolio
-        run: bash ./deploy.sh
+      - name: Prepare SSH connection
+        env:
+          SSH_KEY_B64: ${{ secrets.SERVER_SSH_KEY_B64 }}
+          KNOWN_HOSTS: ${{ secrets.SERVER_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          for setting in SERVER_HOST SERVER_USER SSH_KEY_B64 KNOWN_HOSTS; do
+            if [[ -z "${!setting}" ]]; then
+              echo "::error::Missing $setting. Check the repository's Actions secrets and docs/deployment.md."
+              exit 1
+            fi
+          done
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s' "$SSH_KEY_B64" | base64 -d > ~/.ssh/deploy_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/deploy_key ~/.ssh/known_hosts
+
+      - name: Deploy over SSH
+        run: |
+          set -euo pipefail
+          ssh -T \
+              -o StrictHostKeyChecking=yes \
+              -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              -o BatchMode=yes \
+              -o IdentitiesOnly=yes \
+              -o ConnectTimeout=15 \
+              -o ServerAliveInterval=15 \
+              -o ServerAliveCountMax=3 \
+              -p "$SERVER_PORT" \
+              -i ~/.ssh/deploy_key \
+              "$SERVER_USER@$SERVER_HOST" \
+              'bash /home/riley-drake/Projects/Websites/Web-Portfolio/deploy.sh'
+
+      - name: Remove temporary SSH credentials
+        if: always()
+        run: rm -f ~/.ssh/deploy_key ~/.ssh/known_hosts

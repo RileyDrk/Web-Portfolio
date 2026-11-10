@@ -137,8 +137,8 @@ Use `npm run preview` to inspect that build locally.
 
 The site uses `/` as its public base in [vite.config.js](vite.config.js), matching the custom domain at `rileydrake.ca`. For a host that serves the site under a subpath, pass a base explicitly, for example `npm run build -- --base=/Web-Portfolio/`.
 
-The [deployment workflow](.github/workflows/deploy.yml) runs on pushes to `main` and manual runs on `main`. A GitHub Actions runner on the hosting server runs [deploy.sh](deploy.sh), which syncs the dedicated checkout, installs dependencies, runs lint and tests, and builds the site. NGINX continues serving the existing `dist/` directory.
+The [deployment workflow](.github/workflows/deploy.yml) runs on GitHub-hosted runners for pushes to `main` and manual runs on `main`. It connects over SSH with a verified server host key and runs [deploy.sh](deploy.sh), which syncs the dedicated checkout, installs dependencies, runs lint and tests, and builds the site. NGINX continues serving the existing `dist/` directory.
 
-Deployment uses an outbound connection from the server rather than inbound SSH. Follow the [one-time runner setup guide](docs/deployment.md) before using the new workflow. The old `SERVER_*` secrets are no longer required.
+Configure the `SERVER_*` repository secrets as described in the [SSH deployment guide](docs/deployment.md). That guide also explains how to remove the previously registered self-hosted runner. No workflow uses a runner on the hosting server.
 
 Project navigation uses hash routes, so it does not need generated `404.html` files or server rewrites.
