@@ -1,22 +1,7 @@
 # SSH deployment
 
 GitHub-hosted `ubuntu-latest` runners connect to the server over SSH. Only pushes
-to `main` and manual runs on `main` deploy. No workflow uses a self-hosted runner.
-
-## Remove the self-hosted runner
-
-From the runner installation directory on the server, stop and uninstall its
-service if it was installed:
-
-```bash
-sudo ./svc.sh stop
-sudo ./svc.sh uninstall
-```
-
-If you started `./run.sh` in a terminal, stop it with Ctrl+C too. Open
-[Settings > Actions > Runners](https://github.com/RileyDrk/Web-Portfolio/settings/actions/runners),
-select the runner, and click **Remove**. Follow GitHub's displayed removal command
-on the server; its temporary token should stay on the server.
+to `main` and manual runs on `main` deploy.
 
 ## Repository secrets
 
@@ -25,7 +10,7 @@ Configure these under
 
 | Secret | Value |
 | --- | --- |
-| `SERVER_HOST` | `142.166.203.36`, or a hostname pointing directly to the server; no scheme, path, or port. |
+| `SERVER_HOST` | The server's current public IP or a hostname pointing directly to it; no scheme, path, or port. |
 | `SERVER_USER` | `riley-drake`, the existing deployment account. |
 | `SERVER_PORT` | Optional; defaults to `22`. |
 | `SERVER_SSH_KEY_B64` | The existing deployment private key encoded as Base64. |
@@ -33,17 +18,16 @@ Configure these under
 
 ### Verify the server identity
 
-Run this directly on your server to obtain a known-hosts entry for the current
-public IP and default SSH port:
+Replace `YOUR_SERVER_HOST` below with the exact value of `SERVER_HOST`, then run
+this directly on your server to obtain a known-hosts entry for the default SSH port:
 
 ```bash
-awk '{print "142.166.203.36 " $1 " " $2}' /etc/ssh/ssh_host_ed25519_key.pub
+awk -v host='YOUR_SERVER_HOST' '{print host " " $1 " " $2}' /etc/ssh/ssh_host_ed25519_key.pub
 ```
 
 Copy the complete output into `SERVER_KNOWN_HOSTS`. This is a public host key;
-never copy the file without the `.pub` suffix. If `SERVER_HOST` uses a hostname,
-replace the IP in that command with that same hostname. For a non-default port,
-use `[hostname]:port` as the first field instead.
+never copy the file without the `.pub` suffix. For a non-default port, use
+`[hostname]:port` as the first field instead.
 
 The workflow checks the server against this saved key using
 `StrictHostKeyChecking=yes`; it does not trust a key fetched during deployment.
@@ -71,9 +55,9 @@ SSH environment. Use Node.js 22.12+ or a supported newer release.
 
 ## Connection troubleshooting
 
-A fresh workflow does not fix a network timeout by itself. Public TCP port 22
-must reach the server. The earlier checks confirmed SSH listens on port 22, UFW
-allows it, and the server's outbound LAN address is `192.168.2.70`.
+The configured public SSH port must reach the server through the router and
+firewall. After an IP change, update `SERVER_HOST`, the corresponding host field
+in `SERVER_KNOWN_HOSTS`, and the website's DNS records.
 
 - **Connection timed out:** check `SERVER_HOST`, forwarding to the correct server
   interface, router/firewall filtering, and the network path from GitHub.
@@ -83,5 +67,4 @@ allows it, and the server's outbound LAN address is `192.168.2.70`.
   key in that account's `authorized_keys`. An IP change does not require a new key.
 - **Node/npm not found:** fix PATH for non-interactive SSH sessions.
 
-References: [Remove a runner](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/remove-runners),
-[SSH host-key checking](https://man.openbsd.org/ssh_config#StrictHostKeyChecking).
+Reference: [SSH host-key checking](https://man.openbsd.org/ssh_config#StrictHostKeyChecking).

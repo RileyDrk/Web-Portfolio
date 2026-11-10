@@ -139,6 +139,6 @@ The site uses `/` as its public base in [vite.config.js](vite.config.js), matchi
 
 The [deployment workflow](.github/workflows/deploy.yml) runs on GitHub-hosted runners for pushes to `main` and manual runs on `main`. It connects over SSH with a verified server host key and runs [deploy.sh](deploy.sh), which syncs the dedicated checkout, installs dependencies, runs lint and tests, and builds the site. NGINX continues serving the existing `dist/` directory.
 
-Configure the `SERVER_*` repository secrets as described in the [SSH deployment guide](docs/deployment.md). That guide also explains how to remove the previously registered self-hosted runner. No workflow uses a runner on the hosting server.
+Configure the `SERVER_*` repository secrets as described in the [SSH deployment guide](docs/deployment.md).
 
 Project navigation uses hash routes, so it does not need generated `404.html` files or server rewrites.
