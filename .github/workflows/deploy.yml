@@ -2,30 +2,25 @@ name: Deploy Portfolio
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-deploy
+  cancel-in-progress: false
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-
+    if: github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, linux, portfolio-deploy]
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: bash
     steps:
-      - name: Prepare SSH key
-        shell: bash
-        env:
-          SSH_KEY_B64: ${{ secrets.SERVER_SSH_KEY_B64 }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_KEY_B64" | base64 -d > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-
-      - name: Deploy to server
-        shell: bash
-        env:
-          SERVER_HOST: ${{ secrets.SERVER_HOST }}
-          SERVER_USER: ${{ secrets.SERVER_USER }}
-        run: |
-          ssh -o StrictHostKeyChecking=no \
-              -i ~/.ssh/deploy_key \
-              "$SERVER_USER@$SERVER_HOST" \
-              "/home/riley-drake/Projects/Websites/Web-Portfolio/deploy.sh"
+      - name: Deploy on hosting server
+        working-directory: /home/riley-drake/Projects/Websites/Web-Portfolio
+        run: bash ./deploy.sh

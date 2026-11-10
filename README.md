@@ -137,6 +137,8 @@ Use `npm run preview` to inspect that build locally.
 
 The site uses `/` as its public base in [vite.config.js](vite.config.js), matching the custom domain at `rileydrake.ca`. For a host that serves the site under a subpath, pass a base explicitly, for example `npm run build -- --base=/Web-Portfolio/`.
 
-The [deployment workflow](.github/workflows/deploy.yml) runs on pushes to `main`. It connects to the hosting server over SSH and invokes the root [deploy.sh](deploy.sh) script, which updates the checkout, installs dependencies, and builds the site. Keep that script at its current path because the workflow invokes it directly. The web server serves the resulting `dist/` directory.
+The [deployment workflow](.github/workflows/deploy.yml) runs on pushes to `main` and manual runs on `main`. A GitHub Actions runner on the hosting server runs [deploy.sh](deploy.sh), which syncs the dedicated checkout, installs dependencies, runs lint and tests, and builds the site. NGINX continues serving the existing `dist/` directory.
+
+Deployment uses an outbound connection from the server rather than inbound SSH. Follow the [one-time runner setup guide](docs/deployment.md) before using the new workflow. The old `SERVER_*` secrets are no longer required.
 
 Project navigation uses hash routes, so it does not need generated `404.html` files or server rewrites.

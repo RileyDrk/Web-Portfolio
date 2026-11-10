@@ -1,5 +1,8 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
+# Deployment scripts must keep Unix line endings on every checkout.
+*.sh text eol=lf
+
 # JAR/ZIP binaries must never get CRLF conversion (that corrupts archives)
 *.jar binary
