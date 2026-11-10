@@ -2,6 +2,12 @@ name: Test SSH Connectivity
 
 on:
   workflow_dispatch:
+    inputs:
+      expected_public_ip:
+        description: Current public IPv4 shown by curl on the server
+        required: true
+        default: '142.163.95.91'
+        type: string
 
 permissions: {}
 
@@ -12,6 +18,7 @@ jobs:
     env:
       SERVER_HOST: ${{ secrets.SERVER_HOST }}
       SERVER_PORT: ${{ secrets.SERVER_PORT || '22' }}
+      EXPECTED_PUBLIC_IP: ${{ inputs.expected_public_ip }}
     steps:
       - name: Check SSH from GitHub's network
         shell: bash
@@ -34,8 +41,14 @@ jobs:
               sys.exit(1)
 
           try:
+              addresses = {entry[4][0] for entry in socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)}
+              expected_ip = os.environ["EXPECTED_PUBLIC_IP"].strip()
+              if expected_ip not in addresses:
+                  print("::error::SERVER_HOST does not resolve to the public IP entered for this test. Update the repository Actions SECRET named SERVER_HOST, not a variable or a different repository's setting.")
+                  sys.exit(1)
+              print("Confirmed: SERVER_HOST resolves to the public IP entered for this test.", flush=True)
               with socket.create_connection((host, port), timeout=10) as connection:
-                  print("TCP connection succeeded from GitHub.")
+                  print("TCP connection succeeded from GitHub.", flush=True)
                   connection.settimeout(10)
                   banner = b""
                   while b"\n" not in banner and len(banner) < 1024:
